@@ -1,7 +1,7 @@
 Sub QuaterlyStocksReview()
     Dim WS As Worksheet
     
-    Dim Counter As Integer
+    Dim Counter As Double
     
     'Dim TickerName As String
     
@@ -30,15 +30,9 @@ Sub QuaterlyStocksReview()
         Dim SummaryTableRow As Integer
         SummaryTableRow = 2
         
-        Dim LastRow As Long
+        Dim LastRow As Double
         LastRow = Cells(Rows.Count, 1).End(xlUp).Row
-        
-        'Dim LastDayClose As Double
-        'LastDayClose = 0
-        
-        'Dim FirstDayOpen As Double
-        'FirstDayOpen = 0
-    
+       
         WS.Cells(1, 9).Value = "Ticker"
         WS.Cells(1, 10).Value = "Quarterly Change"
         WS.Cells(1, 11).Value = "Percent Change"
@@ -162,7 +156,10 @@ Sub QuaterlyStocksReview()
         Dim GOATDecreaseValue As Double
         GOATDecreaseValue = 0
         
-        For Counter = 2 To 91
+        Dim STLastRow As Double
+        STLastRow = Cells(Rows.Count, 9).End(xlUp).Row
+        
+        For Counter = 2 To STLastRow
         
             If GOATVolumeValue < WS.Cells(Counter + 1, 12).Value Then
                 GOATVolumeValue = WS.Cells(Counter + 1, 12).Value
@@ -177,7 +174,6 @@ Sub QuaterlyStocksReview()
                 GOATDecreaseValue = WS.Cells(Counter + 1, 11).Value
                 GOATDecreaseName = WS.Cells(Counter + 1, 9).Value
             End If
-            
             
         Next Counter
         
